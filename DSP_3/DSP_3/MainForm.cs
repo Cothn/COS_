@@ -36,7 +36,7 @@ namespace DSP_3
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "0.000";
         }
 
-        private void Calculate(SignalType st, int N)
+        private void Calculate(SignalType st, int N, int Hf = 0, int Sf = 2049)
         {
             Signal hs;
             double[] A = new double[7] { 1, 3, 5, 8, 10, 12, 16 };
@@ -49,6 +49,9 @@ namespace DSP_3
             else
             {
                 hs = new PolyharmonicSignal(A,ph, N);
+                hs.FilterHF(Hf);
+                hs.FilterSF(Sf);
+                
             }
             chart1.Series.Clear();
             chart1.Legends.Clear();
@@ -145,7 +148,7 @@ namespace DSP_3
             chart3.ResetAutoValues();
 
             chart3.Series.Add(DataSer_7);
-            chart3.Series.Add(DataSer_6);
+                        chart3.Series.Add(DataSer_6);
             chart3.Series.Add(DataSer_3);
 
             
@@ -159,19 +162,38 @@ namespace DSP_3
 
         }
 
+        private void initializeFilters()
+        {
+            trackBar_HF.Enabled = true;
+            trackBar_SF.Enabled = true;
+            textBox_N.Text = Math.Pow(2, trackBar_N.Value).ToString();
+            trackBar_HF.Maximum = int.Parse(textBox_N.Text)/2;
+            trackBar_SF.Maximum  = int.Parse(textBox_N.Text)/2+1;
+            trackBar_HF.Minimum = 0;
+            trackBar_SF.Minimum = 1;
+            
+            trackBar_HF.Value = trackBar_HF.Minimum;
+            trackBar_SF.Value = trackBar_SF.Maximum;
+            textBox_SF.Text =  trackBar_SF.Value.ToString();
+            textBox_HF.Text =  trackBar_HF.Value.ToString();
+        }
         private void radioButton1_Checked(object sender, EventArgs e)
         {
+            trackBar_HF.Enabled = false;
+            trackBar_SF.Enabled = false;
             Calculate(SignalType.Harmonic,int.Parse(textBox_N.Text));
         }
 
         private void radioButton2_Checked(object sender, EventArgs e)
         {
+            initializeFilters();
             Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text));
         }
         
         private void trackBar_N_Scroll(object sender, EventArgs e)
         {
             textBox_N.Text = Math.Pow(2, trackBar_N.Value).ToString();
+            initializeFilters();
             calculate_button_Click(sender, e);
         }
         
@@ -179,14 +201,29 @@ namespace DSP_3
         {
             if (radioButton1.Checked)
             {
+
                 Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text));
             }
             else
             {
-                Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text));
+                Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text), 
+                    int.Parse(textBox_HF.Text), int.Parse(textBox_SF.Text));
             }
         }
 
 
+        private void trackBar_SF_Scroll(object sender, EventArgs e)
+        {
+            trackBar_HF.Maximum = trackBar_SF.Value-1;
+            textBox_SF.Text =  trackBar_SF.Value.ToString();
+            calculate_button_Click(sender, e);
+        }
+
+        private void trackBar_HF_Scroll(object sender, EventArgs e)
+        {
+            trackBar_SF.Minimum = trackBar_HF.Value+1;
+            textBox_HF.Text = trackBar_HF.Value.ToString();
+            calculate_button_Click(sender, e);
+        }
     }
 }

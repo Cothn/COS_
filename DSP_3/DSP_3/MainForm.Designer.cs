@@ -45,11 +45,23 @@
             this.trackBar_N = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBar_SF = new System.Windows.Forms.TrackBar();
+            this.textBox_SF = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar_HF = new System.Windows.Forms.TrackBar();
+            this.textBox_HF = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize) (this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart3)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.trackBar_N)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_SF)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_HF)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -176,11 +188,101 @@
             this.checkBox1.Text = "Отоброжать точки";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor =
+                ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
+                                                       System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.trackBar_SF);
+            this.groupBox2.Controls.Add(this.textBox_SF);
+            this.groupBox2.Location = new System.Drawing.Point(464, 177);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(304, 107);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Фильтр нижних частот";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(21, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 23);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "частота фильтрации";
+            // 
+            // trackBar_SF
+            // 
+            this.trackBar_SF.Enabled = false;
+            this.trackBar_SF.Location = new System.Drawing.Point(6, 23);
+            this.trackBar_SF.Maximum = 2;
+            this.trackBar_SF.Minimum = 1;
+            this.trackBar_SF.Name = "trackBar_SF";
+            this.trackBar_SF.Size = new System.Drawing.Size(284, 45);
+            this.trackBar_SF.TabIndex = 0;
+            this.trackBar_SF.Value = 2;
+            this.trackBar_SF.Scroll += new System.EventHandler(this.trackBar_SF_Scroll);
+            // 
+            // textBox_SF
+            // 
+            this.textBox_SF.Location = new System.Drawing.Point(148, 71);
+            this.textBox_SF.Name = "textBox_SF";
+            this.textBox_SF.ReadOnly = true;
+            this.textBox_SF.Size = new System.Drawing.Size(124, 23);
+            this.textBox_SF.TabIndex = 5;
+            this.textBox_SF.Text = "2";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor =
+                ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
+                                                       System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.trackBar_HF);
+            this.groupBox3.Controls.Add(this.textBox_HF);
+            this.groupBox3.Location = new System.Drawing.Point(464, 290);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(304, 107);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Фильтр верхних частот";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(21, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "частота фильтрации";
+            // 
+            // trackBar_HF
+            // 
+            this.trackBar_HF.Enabled = false;
+            this.trackBar_HF.Location = new System.Drawing.Point(6, 23);
+            this.trackBar_HF.Maximum = 1;
+            this.trackBar_HF.Name = "trackBar_HF";
+            this.trackBar_HF.Size = new System.Drawing.Size(284, 45);
+            this.trackBar_HF.TabIndex = 0;
+            this.trackBar_HF.Scroll += new System.EventHandler(this.trackBar_HF_Scroll);
+            // 
+            // textBox_HF
+            // 
+            this.textBox_HF.Location = new System.Drawing.Point(148, 71);
+            this.textBox_HF.Name = "textBox_HF";
+            this.textBox_HF.ReadOnly = true;
+            this.textBox_HF.Size = new System.Drawing.Size(124, 23);
+            this.textBox_HF.TabIndex = 5;
+            this.textBox_HF.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 455);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.chart2);
@@ -194,6 +296,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize) (this.trackBar_N)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_SF)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_HF)).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -210,6 +318,14 @@
         private System.Windows.Forms.TrackBar trackBar_N;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TrackBar trackBar_SF;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox_HF;
+        private System.Windows.Forms.TrackBar trackBar_HF;
+        private System.Windows.Forms.TextBox textBox_SF;
     }
 }
 

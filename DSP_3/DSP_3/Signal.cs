@@ -135,5 +135,32 @@ namespace DSP_3
             }
             return values;
         }
+        
+        internal void FilterHF(int frequency)
+        {
+            for (int j = 0; j <= frequency - 1; j++)
+            {
+                sineSp[j] = 0;
+                cosineSp[j] = 0;
+                amplSp[j] = 0;
+                phaseSp[j] = 0;
+            }
+            restSignal = RestoreSignal();
+            nfSignal = RestoreNFSignal();
+
+        }
+        
+        internal void FilterSF(int frequency)
+        {
+            for (int j = frequency; j <= numHarm - 1; j++)
+            {
+                sineSp[j] = 0;
+                cosineSp[j] = 0;
+                amplSp[j] = 0;
+                phaseSp[j] = 0;
+            }
+            restSignal = RestoreSignal();
+            nfSignal = RestoreNFSignal();
+        }
     }
 }

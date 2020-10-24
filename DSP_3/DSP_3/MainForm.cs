@@ -143,9 +143,11 @@ namespace DSP_3
             chart2.ResetAutoValues();
             chart2.Series.Add(DataSer_2);
             chart3.ResetAutoValues();
-            chart3.Series.Add(DataSer_6);
+
             chart3.Series.Add(DataSer_7);
+            chart3.Series.Add(DataSer_6);
             chart3.Series.Add(DataSer_3);
+
             
             //точки
             if (checkBox1.Checked)

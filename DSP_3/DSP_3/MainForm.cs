@@ -12,7 +12,9 @@ namespace DSP_3
 {
     public partial class MainForm : Form
     {
-        Series DataSer_1, DataSer_2, DataSer_3, DataSer_4, DataSer_5;
+        Series DataSer_1, DataSer_2, DataSer_3, 
+            DataSer_4, DataSer_5, DataSer_6, 
+            DataSer_7, DataSer_8, DataSer_9, DataSer_10;
         enum SignalType { Harmonic,Polyharmonic}
 
         public MainForm()
@@ -70,7 +72,7 @@ namespace DSP_3
                 DataSer_5.Name = "Восстановленный \r\nсигнал без \r\nучета фазы";
             }
 
-            for (int i = 0; i <= N-1; i++)
+            for (int i = 1; i <= N-1; i++)
             {
                 DataSer_1.Points.AddXY(2 * Math.PI * i / N, hs.signVal[i]);
                 DataSer_4.Points.AddXY(2 * Math.PI * i / N, hs.restoredSignal[i]);
@@ -98,23 +100,61 @@ namespace DSP_3
             chart3.Legends.Add(l3);
             DataSer_2 = new Series();
             DataSer_2.ChartType = SeriesChartType.Candlestick;
-            DataSer_2.Color = Color.Red;
+            DataSer_2.Color = Color.Blue;
             DataSer_2.Name = "Фазовый спектр";
             DataSer_3 = new Series();
             DataSer_3.ChartType = SeriesChartType.Candlestick;
             DataSer_3.Color = Color.Blue;
             DataSer_3.Name = "Амплитудный спектр";
+            DataSer_6 = new Series();
+            DataSer_6.ChartType = SeriesChartType.Candlestick;
+            DataSer_6.Color = Color.Red;
+            DataSer_6.Name = "Амплитуда \r\nкосинусной составляющей";
+            DataSer_7 = new Series();
+            DataSer_7.ChartType = SeriesChartType.Candlestick;
+            DataSer_7.Color = Color.Green;
+            DataSer_7.Name = "Амплитуда \r\nсинусной составляющей";
+            DataSer_8 = new Series();
+            DataSer_8.ChartType = SeriesChartType.Point;
+            DataSer_8.Color = Color.Red;
+            DataSer_8.IsVisibleInLegend = false;
+            DataSer_9 = new Series();
+            DataSer_9.ChartType = SeriesChartType.Point;
+            DataSer_9.Color = Color.Green;
+            DataSer_9.IsVisibleInLegend = false;
+            DataSer_10 = new Series();
+            DataSer_10.ChartType = SeriesChartType.Point;
+            DataSer_10.Color = Color.Blue;
+            DataSer_10.IsVisibleInLegend = false;
+
+
             for (int j = 1; j <= hs.numHarm - 1; j++)
             {
                 DataSer_2.Points.AddXY(j, hs.phaseSp[j]);
                 DataSer_3.Points.AddXY(j, hs.amplSp[j]);
+                DataSer_10.Points.AddXY(j, hs.amplSp[j]);
+                DataSer_7.Points.AddXY(j, hs.sineSp[j]);
+                DataSer_6.Points.AddXY(j, hs.cosineSp[j]);
+                DataSer_9.Points.AddXY(j, hs.sineSp[j]);
+                DataSer_8.Points.AddXY(j, hs.cosineSp[j]);
+
             }
 
             chart2.ResetAutoValues();
             chart2.Series.Add(DataSer_2);
             chart3.ResetAutoValues();
+            chart3.Series.Add(DataSer_6);
+            chart3.Series.Add(DataSer_7);
             chart3.Series.Add(DataSer_3);
             
+            //точки
+            if (checkBox1.Checked)
+            {
+                chart3.Series.Add(DataSer_8);
+                chart3.Series.Add(DataSer_9);
+                chart3.Series.Add(DataSer_10);
+            }
+
         }
 
         private void radioButton1_Checked(object sender, EventArgs e)

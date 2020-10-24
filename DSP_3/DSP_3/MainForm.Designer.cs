@@ -44,6 +44,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.trackBar_N = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize) (this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart3)).BeginInit();
@@ -88,7 +89,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(148, 40);
+            this.radioButton1.Location = new System.Drawing.Point(148, 23);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(113, 19);
             this.radioButton1.TabIndex = 0;
@@ -109,7 +110,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(148, 65);
+            this.radioButton2.Location = new System.Drawing.Point(148, 49);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(142, 19);
             this.radioButton2.TabIndex = 1;
@@ -133,6 +134,7 @@
             this.groupBox1.Anchor =
                 ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
                                                        System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBar_N);
             this.groupBox1.Controls.Add(this.calculate_button);
@@ -164,6 +166,15 @@
             this.label1.Size = new System.Drawing.Size(20, 23);
             this.label1.TabIndex = 7;
             this.label1.Text = "N:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Location = new System.Drawing.Point(148, 78);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(142, 18);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Отоброжать точки";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -198,6 +209,7 @@
         private System.Windows.Forms.Button calculate_button;
         private System.Windows.Forms.TrackBar trackBar_N;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

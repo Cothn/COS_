@@ -18,19 +18,20 @@ namespace DSP_3
         public MainForm()
         {
             InitializeComponent();
-            chart1.SetBounds(10, 10, this.Size.Width - 180, (this.Size.Height - 70) / 3);
-            chart2.SetBounds(10, (this.Size.Height - 70) / 3 + 20, this.Size.Width - 180, (this.Size.Height - 70) / 3);
-            chart3.SetBounds(10, 2 * (this.Size.Height - 70) / 3 + 30, this.Size.Width - 180, (this.Size.Height - 70) / 3);
-            chart3.RenderingDpiY = 20;
+            chart1.SetBounds(10, 10, this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart2.SetBounds(10, (this.Size.Height - 70) / 3 + 20, this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart3.SetBounds(10, 2 * (this.Size.Height - 70) / 3 + 30, this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "0:0.000";
+
             Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text));
-            
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            chart1.SetBounds(10, 10, this.Size.Width - 180, (this.Size.Height - 70) / 3);
-            chart2.SetBounds(10,(this.Size.Height - 70) / 3+20,this.Size.Width - 180, (this.Size.Height - 70) / 3);
-            chart3.SetBounds(10, 2*(this.Size.Height - 70) / 3 + 30, this.Size.Width - 180, (this.Size.Height - 70) / 3);
+            chart1.SetBounds(10, 10, this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart2.SetBounds(10,(this.Size.Height - 70) / 3+20,this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart3.SetBounds(10, 2*(this.Size.Height - 70) / 3 + 30, this.Size.Width - 300, (this.Size.Height - 70) / 3);
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "0.000";
         }
 
         private void Calculate(SignalType st, int N)
@@ -59,14 +60,14 @@ namespace DSP_3
             DataSer_4 = new Series();
             DataSer_4.ChartType = SeriesChartType.Spline;
             DataSer_4.Color = Color.Blue;
-            DataSer_4.Name = "Восстановленный сигнал";
+            DataSer_4.Name = "Восстановленный\r\n сигнал";
             
             if (st != SignalType.Harmonic)
             {
                 DataSer_5 = new Series();
                 DataSer_5.ChartType = SeriesChartType.Spline;
                 DataSer_5.Color = Color.Green;
-                DataSer_5.Name = "Восстановленный сигнал \r\nбез учета фазы";
+                DataSer_5.Name = "Восстановленный \r\nсигнал без \r\nучета фазы";
             }
 
             for (int i = 0; i <= N-1; i++)
@@ -126,7 +127,12 @@ namespace DSP_3
             Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text));
         }
         
-
+        private void trackBar_N_Scroll(object sender, EventArgs e)
+        {
+            textBox_N.Text = Math.Pow(2, trackBar_N.Value).ToString();
+            calculate_button_Click(sender, e);
+        }
+        
         private void calculate_button_Click(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
@@ -138,5 +144,7 @@ namespace DSP_3
                 Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text));
             }
         }
+
+
     }
 }

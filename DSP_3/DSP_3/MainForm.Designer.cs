@@ -37,15 +37,18 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBox_N = new System.Windows.Forms.TextBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.calculate_button = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackBar_N = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize) (this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart3)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_N)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -81,39 +84,11 @@
             this.chart3.TabIndex = 3;
             this.chart3.Text = "chart3";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor =
-                ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
-                                                       System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.calculate_button);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.textBox_N);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(603, 14);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(160, 144);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Сигнал";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 48);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(142, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Полигармонический";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_Checked);
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 22);
+            this.radioButton1.Location = new System.Drawing.Point(148, 40);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(113, 19);
             this.radioButton1.TabIndex = 0;
@@ -124,21 +99,71 @@
             // 
             // textBox_N
             // 
-            this.textBox_N.Location = new System.Drawing.Point(8, 73);
+            this.textBox_N.Location = new System.Drawing.Point(26, 78);
             this.textBox_N.Name = "textBox_N";
-            this.textBox_N.Size = new System.Drawing.Size(146, 23);
+            this.textBox_N.ReadOnly = true;
+            this.textBox_N.Size = new System.Drawing.Size(116, 23);
             this.textBox_N.TabIndex = 5;
             this.textBox_N.Text = "128";
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(148, 65);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(142, 19);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Полигармонический";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_Checked);
+            // 
             // calculate_button
             // 
-            this.calculate_button.Location = new System.Drawing.Point(7, 101);
+            this.calculate_button.Location = new System.Drawing.Point(5, 107);
             this.calculate_button.Name = "calculate_button";
-            this.calculate_button.Size = new System.Drawing.Size(147, 33);
+            this.calculate_button.Size = new System.Drawing.Size(285, 33);
             this.calculate_button.TabIndex = 6;
             this.calculate_button.Text = "Calculate";
             this.calculate_button.UseVisualStyleBackColor = true;
             this.calculate_button.Click += new System.EventHandler(this.calculate_button_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor =
+                ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
+                                                       System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.trackBar_N);
+            this.groupBox1.Controls.Add(this.calculate_button);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.textBox_N);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(464, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(304, 148);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Сигнал";
+            // 
+            // trackBar_N
+            // 
+            this.trackBar_N.Location = new System.Drawing.Point(6, 23);
+            this.trackBar_N.Minimum = 5;
+            this.trackBar_N.Name = "trackBar_N";
+            this.trackBar_N.Size = new System.Drawing.Size(136, 45);
+            this.trackBar_N.TabIndex = 5;
+            this.trackBar_N.Value = 7;
+            this.trackBar_N.Scroll += new System.EventHandler(this.trackBar_N_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(6, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 23);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "N:";
             // 
             // MainForm
             // 
@@ -157,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize) (this.chart3)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar_N)).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -170,6 +196,8 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBox_N;
         private System.Windows.Forms.Button calculate_button;
+        private System.Windows.Forms.TrackBar trackBar_N;
+        private System.Windows.Forms.Label label1;
     }
 }
 

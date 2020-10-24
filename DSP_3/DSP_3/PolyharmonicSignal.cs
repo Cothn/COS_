@@ -14,6 +14,7 @@ namespace DSP_3
             n = discrPoints;
             phi = phases;
             numHarm = n/2;
+            sineTable = GetSineTable();
             signal = GenerateSignal();
             sineSp = GetSineSpectrum();
             cosineSp = GetCosineSpectrum();
@@ -38,5 +39,7 @@ namespace DSP_3
             }
             return sign;
         }
+        
+
     }
 }

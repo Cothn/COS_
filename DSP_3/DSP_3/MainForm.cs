@@ -73,13 +73,20 @@ namespace DSP_3
             {
                 DataSer_1.Points.AddXY(2 * Math.PI * i / N, hs.signVal[i]);
                 DataSer_4.Points.AddXY(2 * Math.PI * i / N, hs.restoredSignal[i]);
-                DataSer_5.Points.AddXY(2 * Math.PI * i / N, hs.restorednonphasedSignal[i]);
+                if (st != SignalType.Harmonic)
+                {
+                    DataSer_5.Points.AddXY(2 * Math.PI * i / N, hs.restorednonphasedSignal[i]);
+                }
             }
             
             chart1.ResetAutoValues();
             chart1.Series.Add(DataSer_1); 
             chart1.Series.Add(DataSer_4);
-            chart1.Series.Add(DataSer_5);
+            if (st != SignalType.Harmonic)
+            {
+                chart1.Series.Add(DataSer_5);
+            }
+
             chart2.Series.Clear();
             chart3.Series.Clear();
             chart2.Legends.Clear();

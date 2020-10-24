@@ -15,6 +15,7 @@ namespace DSP_3
         internal int numHarm;
         public Signal()
         {
+            sineTable = GetSineTable();
             signal = GenerateSignal();
             sineSp = GetSineSpectrum();
             cosineSp = GetCosineSpectrum();
@@ -22,7 +23,7 @@ namespace DSP_3
             phaseSp = GetPhaseSpectrum();
             restSignal = RestoreSignal();
             nfSignal = RestoreNFSignal();
-            sineTable = GetSineTable();
+
         }
         public double[] signVal { get { return signal; } }
         public double[] amplSpectrum { get { return amplSp; } }
@@ -36,7 +37,8 @@ namespace DSP_3
         {
             return null;
         }
-
+        
+        
         internal double[] GetSineSpectrum()
         {
             double[] values = new double[numHarm];
@@ -45,7 +47,9 @@ namespace DSP_3
                 double val = 0;
                 for (int i = 0; i <= n - 1; i++)
                 {
-                    val += signal[i] * Math.Sin(2 * Math.PI * i * j / n);
+                    //val += signal[i] * Math.Sin(2 * Math.PI * i * j / n);
+                    //double temp = Math.Sin(2 * Math.PI * i * j / n);
+                    val += signal[i] * sineTable[i*j % n];
                 }
                 values[j] = 2 * val / n;
             }
@@ -54,17 +58,14 @@ namespace DSP_3
         
         internal double[] GetSineTable()
         {
-            double[] values = new double[numHarm];
-            for (int j = 0; j <= numHarm-1 ; j++)
+            double[] sine = new double[n];
+            for (int i = 0; i <= n - 1; i++)
             {
-                double val = 0;
-                for (int i = 0; i <= n - 1; i++)
-                {
-                    val += signal[i] * Math.Sin(2 * Math.PI * i * j / n);
-                }
-                values[j] = 2 * val / n;
+
+                sine[i] = Math.Sin(2 * Math.PI * i / n );
+                
             }
-            return values;
+            return sine;
         }
 
         internal double[] GetCosineSpectrum()
@@ -75,7 +76,9 @@ namespace DSP_3
                 double val = 0;
                 for (int i = 0; i <= n - 1; i++)
                 {
-                    val += signal[i] * Math.Cos(2 * Math.PI * i * j / n);
+                    //val += signal[i] * Math.Cos(2 * Math.PI * i * j / n);
+                    //double temp = Math.Cos(2 * Math.PI * i * j / n);
+                    val += signal[i] * sineTable[(i*j + n/4)% n];
                 }
                 values[j] = 2 * val / n;
             }

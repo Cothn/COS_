@@ -100,7 +100,8 @@ namespace DSP_3
             double[] values = new double[numHarm];
             for (int j = 0; j <= numHarm-1 ; j++)
             {
-                values[j] = Math.Atan(sineSp[j] / cosineSp[j]);
+                //values[j] = Math.Atan(sineSp[j] / cosineSp[j]);
+                values[j] = Math.Atan2(sineSp[j] , cosineSp[j]);
             }
             return values;
         }

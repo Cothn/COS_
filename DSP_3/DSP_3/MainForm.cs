@@ -25,7 +25,7 @@ namespace DSP_3
             chart3.SetBounds(10, 2 * (this.Size.Height - 70) / 3 + 30, this.Size.Width - 300, (this.Size.Height - 70) / 3);
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "0:0.000";
 
-            Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text));
+            Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text), checkBox_FFT.Checked);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -36,9 +36,9 @@ namespace DSP_3
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "0.000";
         }
 
-        private void Calculate(SignalType st, int N, int Hf = 0, int Sf = 2049)
+        private void Calculate(SignalType st, int N, bool fft_flag, int Hf = 0, int Sf = 2049)
         {
-            Signal hs;
+            Signal  hs;
             double[] A = new double[7] { 1, 3, 5, 8, 10, 12, 16 };
             double[] ph = new double[6] { Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, Math.PI, 3 * Math.PI / 4 };
 
@@ -48,7 +48,7 @@ namespace DSP_3
             }
             else
             {
-                hs = new PolyharmonicSignal(A,ph, N);
+                hs = new PolyharmonicSignal(A,ph, N, fft_flag);
                 hs.FilterHF(Hf);
                 hs.FilterSF(Sf);
                 
@@ -109,14 +109,15 @@ namespace DSP_3
             DataSer_3.ChartType = SeriesChartType.Candlestick;
             DataSer_3.Color = Color.Blue;
             DataSer_3.Name = "Амплитудный спектр";
+            
             DataSer_6 = new Series();
             DataSer_6.ChartType = SeriesChartType.Candlestick;
             DataSer_6.Color = Color.Red;
-            DataSer_6.Name = "Амплитуда \r\nкосинусной составляющей";
+            DataSer_6.Name = "Амплитуда реальной\r\n(косинусной) составляющей";
             DataSer_7 = new Series();
             DataSer_7.ChartType = SeriesChartType.Candlestick;
             DataSer_7.Color = Color.Green;
-            DataSer_7.Name = "Амплитуда \r\nсинусной составляющей";
+            DataSer_7.Name = "Амплитуда мнимой\r\n(синусной) составляющей";
             DataSer_8 = new Series();
             DataSer_8.ChartType = SeriesChartType.Point;
             DataSer_8.Color = Color.Red;
@@ -131,11 +132,12 @@ namespace DSP_3
             DataSer_10.IsVisibleInLegend = false;
 
 
-            for (int j = 1; j <= hs.numHarm - 1; j++)
+            for (int j = 1; j <= hs.countFrequency - 1; j++)
             {
                 DataSer_2.Points.AddXY(j, hs.phaseSp[j]);
                 DataSer_3.Points.AddXY(j, hs.amplSp[j]);
                 DataSer_10.Points.AddXY(j, hs.amplSp[j]);
+
                 DataSer_7.Points.AddXY(j, hs.sineSp[j]);
                 DataSer_6.Points.AddXY(j, hs.cosineSp[j]);
                 DataSer_9.Points.AddXY(j, hs.sineSp[j]);
@@ -147,8 +149,10 @@ namespace DSP_3
             chart2.Series.Add(DataSer_2);
             chart3.ResetAutoValues();
 
+            
             chart3.Series.Add(DataSer_7);
-                        chart3.Series.Add(DataSer_6);
+            chart3.Series.Add(DataSer_6);
+            
             chart3.Series.Add(DataSer_3);
 
             
@@ -181,13 +185,13 @@ namespace DSP_3
         {
             trackBar_HF.Enabled = false;
             trackBar_SF.Enabled = false;
-            Calculate(SignalType.Harmonic,int.Parse(textBox_N.Text));
+            Calculate(SignalType.Harmonic,int.Parse(textBox_N.Text), checkBox_FFT.Checked);
         }
 
         private void radioButton2_Checked(object sender, EventArgs e)
         {
             initializeFilters();
-            Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text));
+            Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text), checkBox_FFT.Checked);
         }
         
         private void trackBar_N_Scroll(object sender, EventArgs e)
@@ -202,11 +206,11 @@ namespace DSP_3
             if (radioButton1.Checked)
             {
 
-                Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text));
+                Calculate(SignalType.Harmonic, int.Parse(textBox_N.Text), checkBox_FFT.Checked);
             }
             else
             {
-                Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text), 
+                Calculate(SignalType.Polyharmonic,  int.Parse(textBox_N.Text), checkBox_FFT.Checked,
                     int.Parse(textBox_HF.Text), int.Parse(textBox_SF.Text));
             }
         }
@@ -225,5 +229,6 @@ namespace DSP_3
             textBox_HF.Text = trackBar_HF.Value.ToString();
             calculate_button_Click(sender, e);
         }
+        
     }
 }

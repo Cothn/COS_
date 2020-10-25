@@ -53,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.trackBar_HF = new System.Windows.Forms.TrackBar();
             this.textBox_HF = new System.Windows.Forms.TextBox();
+            this.checkBox_FFT = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize) (this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.chart3)).BeginInit();
@@ -101,7 +102,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(148, 23);
+            this.radioButton1.Location = new System.Drawing.Point(148, 12);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(113, 19);
             this.radioButton1.TabIndex = 0;
@@ -122,7 +123,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(148, 49);
+            this.radioButton2.Location = new System.Drawing.Point(148, 37);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(142, 19);
             this.radioButton2.TabIndex = 1;
@@ -146,6 +147,7 @@
             this.groupBox1.Anchor =
                 ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top |
                                                        System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBox_FFT);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBar_N);
@@ -181,7 +183,7 @@
             // 
             // checkBox1
             // 
-            this.checkBox1.Location = new System.Drawing.Point(148, 78);
+            this.checkBox1.Location = new System.Drawing.Point(148, 62);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(142, 18);
             this.checkBox1.TabIndex = 8;
@@ -276,6 +278,15 @@
             this.textBox_HF.TabIndex = 5;
             this.textBox_HF.Text = "0";
             // 
+            // checkBox_FFT
+            // 
+            this.checkBox_FFT.Location = new System.Drawing.Point(148, 83);
+            this.checkBox_FFT.Name = "checkBox_FFT";
+            this.checkBox_FFT.Size = new System.Drawing.Size(142, 18);
+            this.checkBox_FFT.TabIndex = 9;
+            this.checkBox_FFT.Text = "БПФ";
+            this.checkBox_FFT.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -326,6 +337,7 @@
         private System.Windows.Forms.TextBox textBox_HF;
         private System.Windows.Forms.TrackBar trackBar_HF;
         private System.Windows.Forms.TextBox textBox_SF;
+        private System.Windows.Forms.CheckBox checkBox_FFT;
     }
 }
 

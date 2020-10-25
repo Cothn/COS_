@@ -12,7 +12,7 @@ namespace DSP_3
         {
             A = amplitude;
             n = discrPoints;
-            numHarm = 2;
+            countFrequency = 2;
             sineTable = GetSineTable();
             signal = GenerateSignal();
             sineSp = GetSineSpectrum();

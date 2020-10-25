@@ -12,9 +12,11 @@ namespace DSP_3
         internal double[] sineSp, cosineSp;
         internal double[] sineTable;
         internal double[] amplSp, phaseSp;
-        internal int numHarm;
+        internal int countFrequency;
+        internal bool fft_flag;
         public Signal()
         {
+            fft_flag = false;
             sineTable = GetSineTable();
             signal = GenerateSignal();
             sineSp = GetSineSpectrum();
@@ -24,11 +26,12 @@ namespace DSP_3
             restSignal = RestoreSignal();
             nfSignal = RestoreNFSignal();
 
+
         }
         public double[] signVal { get { return signal; } }
         public double[] amplSpectrum { get { return amplSp; } }
         public double[] phaseSpectrum { get { return phaseSp; } }
-        public int numHarmVal { get { return numHarm; } }
+        public int CountFrequencyVal { get { return countFrequency; } }
 
         public double[] restoredSignal { get { return restSignal; } }
         public double[] restorednonphasedSignal { get { return nfSignal; } }
@@ -41,8 +44,8 @@ namespace DSP_3
         
         internal double[] GetSineSpectrum()
         {
-            double[] values = new double[numHarm];
-            for (int j = 0; j <= numHarm-1 ; j++)
+            double[] values = new double[countFrequency];
+            for (int j = 0; j <= countFrequency-1 ; j++)
             {
                 double val = 0;
                 for (int i = 0; i <= n - 1; i++)
@@ -70,8 +73,8 @@ namespace DSP_3
 
         internal double[] GetCosineSpectrum()
         {
-            double[] values = new double[numHarm];
-            for (int j = 0; j <= numHarm-1 ; j++)
+            double[] values = new double[countFrequency];
+            for (int j = 0; j <= countFrequency-1 ; j++)
             {
                 double val = 0;
                 for (int i = 0; i <= n - 1; i++)
@@ -87,8 +90,8 @@ namespace DSP_3
 
         internal double[] GetAmplSpectrum()
         {
-            double[] values = new double[numHarm];
-            for (int j = 0; j <= numHarm-1 ; j++)
+            double[] values = new double[countFrequency];
+            for (int j = 0; j <= countFrequency-1 ; j++)
             {
                 values[j] = Math.Sqrt(Math.Pow(sineSp[j], 2) + Math.Pow(cosineSp[j], 2));
             }
@@ -97,8 +100,8 @@ namespace DSP_3
 
         internal double[] GetPhaseSpectrum()
         {
-            double[] values = new double[numHarm];
-            for (int j = 0; j <= numHarm-1 ; j++)
+            double[] values = new double[countFrequency];
+            for (int j = 0; j <= countFrequency-1 ; j++)
             {
                 //values[j] = Math.Atan(sineSp[j] / cosineSp[j]);
                 values[j] = Math.Atan2(sineSp[j] , cosineSp[j]);
@@ -112,7 +115,7 @@ namespace DSP_3
             for (int i = 0; i <= n - 1; i++)
             {
                 double val = 0;
-                for (int j = 0; j <= numHarm-1 ; j++)
+                for (int j = 0; j <= countFrequency-1 ; j++)
                 {
                     val += amplSp[j] * Math.Cos(2 * Math.PI * i * j / n - phaseSp[j]);
                 }
@@ -127,7 +130,7 @@ namespace DSP_3
             for (int i = 0; i <= n - 1; i++)
             {
                 double val = 0;
-                for (int j = 0; j <= numHarm-1 ; j++)
+                for (int j = 0; j <= countFrequency-1 ; j++)
                 {
                     val += amplSp[j] * Math.Cos(2 * Math.PI * i * j / n);
                 }
@@ -152,7 +155,7 @@ namespace DSP_3
         
         internal void FilterSF(int frequency)
         {
-            for (int j = frequency; j <= numHarm - 1; j++)
+            for (int j = frequency; j <= countFrequency - 1; j++)
             {
                 sineSp[j] = 0;
                 cosineSp[j] = 0;
